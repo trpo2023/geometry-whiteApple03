@@ -1,14 +1,14 @@
-all : project
+all : project.exe
 
-project : main.o
-	gcc main.o -o project
+project.exe : main.o
+	g++ main.o -o project.exe
 
 
 clean : 
-	rm project main.o
+	rm project.exe main.o
 run :
-	./project
+	./project.exe
 
-main.o : main.c
-	gcc -Wall -Werror -c main.c -o main.o
+main.o : main.cpp
+	g++ -Wall -Werror -c main.cpp -o main.o
 
