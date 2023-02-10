@@ -2,3 +2,6 @@
 
 *.exe
 
+./src/bin
+
+./src/obj
