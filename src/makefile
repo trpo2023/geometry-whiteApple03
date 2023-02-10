@@ -11,4 +11,4 @@ all : ./bin/project.exe
 clean : 
 	rm ./bin/project.exe ./obj/main.o
 run :
-	./project.exe
+	./bin/project.exe

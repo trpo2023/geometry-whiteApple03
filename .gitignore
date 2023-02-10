@@ -1,3 +1,9 @@
 *.o
 
 *.exe
+
+src/bin
+
+src/obj
+
+.vscode/
