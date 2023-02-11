@@ -2,21 +2,22 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class Figure {
 public:
-    Figure(string figure_description)
+    Figure(std::string figure_description, std::string figure_name)
     {
-        name = get_figure_name(figure_description);
+				name = figure_name;
         points = get_points(figure_description);
     }
-
-    vector<vector<double>> get_points()
+    virtual double get_data()
+    {
+        return 0;
+    }
+    std::vector<std::vector<double>> get_points()
     {
         return points;
     }
-    string get_name()
+    std::string get_name()
     {
         return name;
     }
@@ -31,17 +32,17 @@ public:
     }
 
 private:
-    vector<vector<double>> get_points(string figure_description)
+    std::vector<std::vector<double>> get_points(std::string figure_description)
     {
         int i = figure_description.find('(');
         int points_quantity = 0;
-        vector<vector<double>> returned_points(5);
+        std::vector<std::vector<double>> returned_points(5);
         returned_points[0].reserve(3);
         if (i == -1) {
-            cout << "error\n";
+            std::cout << "error\n";
         }
         int digit_point = 0;
-        vector<string> digit(2);
+        std::vector<std::string> digit(2);
         for (; figure_description[i] != ')'; i++) {
             if ((long unsigned int)points_quantity
                 > returned_points.size() - 1) {
@@ -74,22 +75,11 @@ private:
         }
         return returned_points;
     }
-    string get_figure_name(string figure_description)
-    {
-        string figure_name;
-        for (auto symbol = figure_description.begin();
-             symbol < figure_description.end() and *symbol != '(';
-             symbol++) {
-            if ((*symbol) != ' ') {
-                figure_name.push_back(tolower(*symbol));
-            }
-        }
-        return figure_name;
-    }
+
 
 protected:
-    vector<vector<double>> points;
-    string name;
+    std::vector<std::vector<double>> points;
+    std::string name;
     double perimeter;
     double square;
 };

@@ -1,30 +1,25 @@
-#include "../figures/Circle.h"
 #include <iostream>
 #include <string>
 #include <vector>
-
-
-using namespace std;
-
+#include "../assistants/get_figure.hpp"
 
 int main()
 {
-    vector<string> user_input;
-    string figure_one;
-    while (getline(cin, figure_one) && figure_one != "") {
+    std::vector<std::string> all_figure_names = {"circle"};
+    std::vector<std::string> user_input;
+    std::string figure_one;
+		
+    while (getline(std::cin, figure_one) && figure_one != "") {
         user_input.push_back(figure_one);
     }
-    Circle circle(user_input[0]);
-    // for (vector<int>::size_type i = 0; i < user_input.size(); i++) {
-    //     circle(user_input[i]);
-    // }
-    vector<vector<double>> points = circle.get_points();
-
-    for (unsigned int i = 0; i < points.size(); i++) {
-        for (unsigned int k = 0; k < points[i].size(); k++) {
-            cout << points[i][k] << ' ';
-        }
-        cout << endl;
+    std::vector<Figure> all_figures;
+    for (std::vector<int>::size_type i = 0; i < user_input.size(); i++) {
+        all_figures.push_back(get_figure_obj(user_input[i]));
     }
+
+		for(auto i = all_figures.begin(); i < all_figures.end(); i++) {
+				std::cout << "names: " << (*i).get_name() << std::endl;
+		}
+
     return 0;
 }
