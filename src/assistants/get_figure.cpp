@@ -1,6 +1,6 @@
 #include "../figures/Circle.hpp"
 #include "../figures/Polygon.hpp"
-#include "../figures/triangle.hpp"
+#include "../figures/Triangle.hpp"
 #include <string>
 
 std::string get_figure_name(std::string figure_description)

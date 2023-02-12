@@ -1,4 +1,3 @@
-#pragma once
 #include "../Figure/Figure.hpp"
 #include <math.h>
 #include <string>
@@ -23,11 +22,11 @@ private:
 
     double calc_square(std::vector<std::vector<double>> points)
     {
-				unsigned int n = points.size();
-				double res = points[0][0] * (points[1][1] - points[n-2][1]);
+        unsigned int n = points.size();
+        double res = points[0][0] * (points[1][1] - points[n - 2][1]);
 
-        for (unsigned int i = 1; i < n-1; i++) {
-					res += points[i][0] * (points[i+1][1] - points[i - 1][1]);
+        for (unsigned int i = 1; i < n - 1; i++) {
+            res += points[i][0] * (points[i + 1][1] - points[i - 1][1]);
         }
         return res / 2;
     }
@@ -37,6 +36,6 @@ public:
         : Figure(figure_description, figure_name)
     {
         perimeter = calc_perimeter(points);
-				square = calc_square(points);
+        square = calc_square(points);
     }
 };

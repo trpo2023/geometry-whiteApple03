@@ -1,4 +1,3 @@
-#pragma once
 #include "../Figure/Figure.hpp"
 #include <math.h>
 #include <string>
@@ -10,10 +9,10 @@ public:
         : Figure(figure_description, figure_name)
     {
         a = get_segment_length(points[0], points[1]);
-        b = get_segment_length(points[0], points[2]);
-        c = get_segment_length(points[1], points[2]);
+        b = get_segment_length(points[1], points[2]);
+        c = get_segment_length(points[2], points[3]);
 
-	      perimeter = calc_perimeter(a, b, c);
+        perimeter = calc_perimeter(a, b, c);
         square = calc_square(perimeter);
     }
 

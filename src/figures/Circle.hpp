@@ -1,4 +1,3 @@
-#pragma once
 #include "../Figure/Figure.hpp"
 #include <algorithm>
 #include <iostream>
@@ -38,7 +37,6 @@ private:
             }
             if (radius.size() > 0 and figure_description[i] == ',') {
                 reverse(radius.begin(), radius.end());
-                std::cout << "std radius" << radius << std::endl;
                 return stod(radius);
             }
         }
