@@ -1,3 +1,4 @@
+#pragma once
 #include "../Figure/Figure.hpp"
 #include <string>
 

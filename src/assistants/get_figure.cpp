@@ -1,4 +1,5 @@
 #include "../figures/Circle.hpp"
+#include "../figures/triangle.hpp"
 #include <string>
 
 std::string get_figure_name(std::string figure_description)
@@ -14,14 +15,18 @@ std::string get_figure_name(std::string figure_description)
     return figure_name;
 }
 
-
 Figure get_figure_obj(std::string figure_description)
 {
     std::string figure_name = get_figure_name(figure_description);
-    Circle error{figure_description, figure_name};
+    Circle error{figure_description, "error"};
     if (figure_name == "circle") {
+
         Circle circle{figure_description, "circle"};
         return circle;
+    } else if (figure_name == "triangle") {
+        Triangle triangle{figure_description, figure_name};
+        return triangle;
     }
-		return error;
+    std::cout << "error: " << figure_name << std::endl;
+    return error;
 }
