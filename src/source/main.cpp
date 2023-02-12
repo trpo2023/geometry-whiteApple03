@@ -23,6 +23,5 @@ int main()
                   << "perimeter = " << all_figures[i].get_perimeter() << "\n\t"
                   << "area = " << all_figures[i].get_square() << '\n';
     }
-
     return 0;
 }
