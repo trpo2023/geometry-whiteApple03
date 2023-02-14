@@ -30,8 +30,7 @@ private:
         std::string radius = "";
         for (; i >= 0; i--) {
             while ((figure_description[i] > '0' and figure_description[i] < '9')
-                   or figure_description[i] == '-'
-                   or figure_description[i] == '.') {
+                   or figure_description[i] == '-' or figure_description[i] == '.') {
                 radius.push_back(figure_description[i]);
                 i--;
             }
