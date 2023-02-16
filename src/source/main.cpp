@@ -1,13 +1,12 @@
-#include "../assistants/get_figure.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
+#include "../assistants/get_figure.hpp"
 
 
 int main()
 {
-    std::vector<std::string> all_figure_names = {"circle"};
-    std::vector<std::string> user_input;
+	std::vector<std::string> user_input;
     std::string figure_one;
 
     while (getline(std::cin, figure_one) && figure_one != "") {
@@ -28,7 +27,7 @@ int main()
             if (k == i) {
                 continue;
             }
-            if (all_figures[i]->check_intersection(all_figures[k])) {
+            if (all_figures[i]->check_intersection(*all_figures[k])) {
                 std::cout << "    " << k + 1 << "." << all_figures[k]->get_name()
                           << "\n";
             }

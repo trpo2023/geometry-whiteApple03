@@ -1,5 +1,7 @@
-#include "../figures/all.hpp"
 #include <string>
+#include "../figures/Circle.hpp"
+#include "../figures/Polygon.hpp"
+#include "../figures/Triangle.hpp"
 
 std::string get_figure_name(std::string figure_description)
 {
@@ -14,20 +16,16 @@ std::string get_figure_name(std::string figure_description)
     return figure_name;
 }
 
-Figure* get_figure_obj(std::string figure_description)
+const Figure* get_figure_obj(std::string figure_description)
 {
     std::string figure_name = get_figure_name(figure_description);
-    static Circle error{figure_description, "error"};
     if (figure_name == "circle") {
-        static Circle circle{figure_description, "circle"};
-        return &circle;
+        return new Circle{figure_description, figure_name};
     } else if (figure_name == "triangle") {
-        static Triangle triangle{figure_description, figure_name};
-        return &triangle;
+        return new Triangle{figure_description, figure_name};
     } else if (figure_name == "polygon") {
-        static Polygon polygon{figure_description, figure_name};
-        return &polygon;
+        return new Polygon{figure_description, figure_name};
     }
     std::cout << "error: " << figure_name << std::endl;
-    return &error;
+    return new Circle{"errr", "error"};
 }

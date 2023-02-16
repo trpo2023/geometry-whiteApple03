@@ -1,8 +1,10 @@
 #include "../Figure/Figure.hpp"
+#include <algorithm>
 #include <math.h>
 #include <string>
 #include <vector>
-#include <algorithm>
+
+
 class Circle : public Figure {
 public:
     Circle(std::string figure_description, std::string figure_name)
@@ -12,7 +14,22 @@ public:
         perimeter = calc_perimeter(radius);
         square = calc_square(radius);
     }
+    int get_some_infomation() override
+    {
+        return radius;
+    }
 
+    bool check_intersection(Figure& another_figure) override
+    {
+        if (another_figure.get_name() == "circle") {
+            std::vector<std::vector<double>> center = another_figure.get_points();
+            int rad = another_figure.get_some_infomation();
+            if (rad + this->radius >= get_segment_length(center[0], this->get_points()[0])) {
+                return true;
+            }
+        }
+        return false;
+    }
     double get_radius()
     {
         return radius;
@@ -76,7 +93,7 @@ private:
     }
 
 public:
-    bool check_intersection(Figure* another_figure) 
+    bool check_intersection(Figure* another_figure)
     {
         std::vector<std::vector<double>> first_coord = get_points();
         std::vector<std::vector<double>> second_coord = another_figure->get_points();
@@ -116,6 +133,7 @@ public:
         square = calc_square(points);
     }
 };
+
 class Triangle : public Figure {
 public:
     Triangle(std::string figure_description, std::string figure_name)
@@ -130,8 +148,7 @@ public:
     }
 
 private:
-    double get_segment_length(
-            std::vector<double> first_point, std::vector<double> second_point)
+    double get_segment_length(std::vector<double> first_point, std::vector<double> second_point)
     {
         return sqrt(
                 pow(second_point[0] - first_point[0], 2)

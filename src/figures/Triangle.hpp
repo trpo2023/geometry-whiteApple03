@@ -17,13 +17,7 @@ public:
     }
 
 private:
-    double get_segment_length(
-            std::vector<double> first_point, std::vector<double> second_point)
-    {
-        return sqrt(
-                pow(second_point[0] - first_point[0], 2)
-                + pow(second_point[1] - first_point[1], 2));
-    }
+
     double calc_square(double perimeter)
     {
         double semi_perimeter = perimeter / 2;

@@ -4,8 +4,6 @@
 #include <math.h>
 #include <vector>
 
-#include <map>
-
 class Circle : public Figure {
 public:
     Circle(std::string figure_description, std::string figure_name)
@@ -15,7 +13,22 @@ public:
         perimeter = calc_perimeter(radius);
         square = calc_square(radius);
     }
+    int get_some_infomation() override
+    {
+        return radius;
+    }
 
+    bool check_intersection(Figure& another_figure) override
+    {
+        if (another_figure.get_name() == "circle") {
+            std::vector<std::vector<double>> center = another_figure.get_points();
+            int rad = another_figure.get_some_infomation();
+            if (rad + this->radius >= get_segment_length(center[0], this->get_points()[0])) {
+                return true;
+            }
+        }
+        return false;
+    }
     double get_radius()
     {
         return radius;
@@ -29,7 +42,7 @@ private:
         }
         std::string radius = "";
         for (; i >= 0; i--) {
-            while ((figure_description[i] > '0' and figure_description[i] < '9')
+            while ((figure_description[i] >= '0' and figure_description[i] <= '9')
                    or figure_description[i] == '-' or figure_description[i] == '.') {
                 radius.push_back(figure_description[i]);
                 i--;
