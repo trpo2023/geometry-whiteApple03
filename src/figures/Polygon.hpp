@@ -3,12 +3,6 @@
 #include <string>
 #include <vector>
 
-
-
-
-
-
-
 class Polygon : public Figure {
 private:
     double get_vector_multi(double ax, double ay, double bx, double by)

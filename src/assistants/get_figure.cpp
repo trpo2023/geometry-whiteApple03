@@ -27,5 +27,5 @@ const Figure* get_figure_obj(std::string figure_description)
         return new Polygon{figure_description, figure_name};
     }
     std::cout << "error: " << figure_name << std::endl;
-    return new Circle{"errr", "error"};
+    return new Figure{figure_description, "name_error"};
 }

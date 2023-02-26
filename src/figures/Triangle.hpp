@@ -14,16 +14,12 @@ public:
             for (unsigned int i = 0; i < first_coord.size() - 1; i++) {
                 double x1 = first_coord[i][0], y1 = first_coord[i][1], x2 = first_coord[i + 1][0],
                        y2 = first_coord[i + 1][1];
-                // std::cout << "!!!!!!!!!!!!!!!!!first otrezok!!!!!!!!!!!!!!!\n";
-                // std::cout << "first point: " << x1 << ' ' << y1
-                //           << "\nsecond point: " << x2 << ' ' << y2 << std::endl;
+
 
                 for (unsigned int k = 0; k < second_coord.size() - 1; k++) {
                     double x3 = second_coord[k][0], y3 = second_coord[k][1],
                            x4 = second_coord[k + 1][0], y4 = second_coord[k + 1][1];
-                    // std::cout << "first point2: " << x3 << ' ' << y3
-                    //           << "\nsecond point2: " << x4 << ' ' << y4 <<
-                    //           std::endl;
+
 
                     vs[0] = get_vector_multi(x4 - x3, y4 - y3, x1 - x3, y1 - y3);
                     vs[1] = get_vector_multi(x4 - x3, y4 - y3, x2 - x3, y2 - y3);
@@ -37,7 +33,7 @@ public:
                 }
             }
         }
-        return false; //-1  1 2 2.52 2 1 -1 3
+        return false;
     }
     Triangle(std::string figure_description, std::string figure_name)
         : Figure(figure_description, figure_name)

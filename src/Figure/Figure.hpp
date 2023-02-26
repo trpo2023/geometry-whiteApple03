@@ -4,6 +4,7 @@
 #include <math.h>
 #include <string>
 #include <vector>
+#include <stdio.h>
 
 class Figure {
 public:
@@ -18,6 +19,9 @@ public:
 
     Figure(std::string figure_description, std::string figure_name)
     {
+        if (figure_name == "name_error") {
+            handling_incorrect_name(figure_description);
+        }
         name = figure_name;
         points = get_points(figure_description);
     }
@@ -44,6 +48,19 @@ public:
     }
 
 private:
+    void handling_incorrect_name(std::string figure_description)
+    {
+        std::cout << figure_description << std::endl;
+        for (unsigned int i = 0; i < figure_description.size() - 1; i++) {
+            if (figure_description[i] != ' ' and (figure_description[i + 1] == ' ' or figure_description[i + 1] == '(')) {
+                std::cout << "^" << "\tIncorrect name: it should be polygon, circle or triangle\n";
+                exit(1);
+            }
+            if (figure_description[i] != ' ') {
+                printf("\033[31m~\033[0m");
+            }
+        }
+    }
     std::vector<std::vector<double>> get_points(std::string figure_description)
     {
         int i = figure_description.find('(');
