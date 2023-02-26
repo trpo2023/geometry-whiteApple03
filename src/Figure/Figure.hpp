@@ -4,7 +4,6 @@
 #include <math.h>
 #include <string>
 #include <vector>
-#include <stdio.h>
 
 class Figure {
 public:
@@ -57,8 +56,11 @@ private:
                 exit(1);
             }
             if (figure_description[i] != ' ') {
-                printf("\033[31m~\033[0m");
-            }
+                std::cout << "\033[31m~\033[0m";
+            } else {
+							std::cout << ' ';
+						}
+						 
         }
     }
     std::vector<std::vector<double>> get_points(std::string figure_description)
