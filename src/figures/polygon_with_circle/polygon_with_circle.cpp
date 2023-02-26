@@ -1,7 +1,7 @@
+#include "../Circle.hpp"
+#include "../Polygon.hpp"
 #include <math.h>
 #include <vector>
-#include "../Polygon.hpp"
-#include "../Circle.hpp"
 
 double get_segment_length(std::vector<double> first_point, std::vector<double> second_point)
 {
