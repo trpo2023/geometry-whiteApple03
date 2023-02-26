@@ -6,8 +6,7 @@
 
 class Circle : public Figure {
 public:
-    Circle(std::string figure_description, std::string figure_name)
-        : Figure(figure_description, figure_name)
+    Circle(std::string figure_description, std::string figure_name) : Figure(figure_description, figure_name)
     {
         radius = calc_radius(figure_description);
         perimeter = calc_perimeter(radius);
@@ -26,6 +25,10 @@ public:
             if (rad + this->radius >= get_segment_length(center[0], this->get_points()[0])) {
                 return true;
             }
+        } else if (another_figure.get_name() == "polygon") {
+					if (check_intersection_with_circle(another_figure.get_points(), this->points, this->radius)) {
+						return true;
+					}
         }
         return false;
     }
@@ -35,6 +38,8 @@ public:
     }
 
 private:
+    bool pan_duan(std::vector<double> p1, std::vector<double> p2, double r, std::vector<double> center);
+    bool check_intersection_with_circle(std::vector<std::vector<double>> first_coord, std::vector<std::vector<double>> second_coord, double radius);
     double calc_radius(std::string figure_description)
     {
         int i = figure_description.rfind(')');
@@ -42,8 +47,7 @@ private:
         }
         std::string radius = "";
         for (; i >= 0; i--) {
-            while ((figure_description[i] >= '0' and figure_description[i] <= '9')
-                   or figure_description[i] == '-' or figure_description[i] == '.') {
+            while ((figure_description[i] >= '0' and figure_description[i] <= '9') or figure_description[i] == '-' or figure_description[i] == '.') {
                 radius.push_back(figure_description[i]);
                 i--;
             }
