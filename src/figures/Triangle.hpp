@@ -1,4 +1,4 @@
-#include "../Figure/Figure.hpp"
+#include "../ParantFigure/Figure.hpp"
 #include <math.h>
 #include <string>
 #include <vector>
