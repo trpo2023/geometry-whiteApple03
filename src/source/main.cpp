@@ -3,8 +3,14 @@
 #include <string>
 #include <vector>
 
-int main()
+int main(int argc, char ** argv)
 {
+		// int i = 0;
+		// while(argv[1][i] != '\0') {
+		// 	std::cout << argv[1][i];
+		// 	i++;
+		// }
+
     std::vector<std::string> user_input;
     std::string figure_one;
 
