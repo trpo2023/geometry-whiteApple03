@@ -2,6 +2,14 @@
 #include "../../intersections/Intersection.hpp"
 static Intersection intersection;
 
+Circle::Circle(std::string figure_description, std::string figure_name) : Figure(figure_description, figure_name)
+{
+    radius = calc_radius(figure_description);
+    perimeter = calc_perimeter(radius);
+    square = calc_square(radius);
+}
+
+
 bool Circle::check_intersection(Figure& another_figure)
 {
     if (another_figure.get_name() == "circle") {
@@ -10,7 +18,7 @@ bool Circle::check_intersection(Figure& another_figure)
         if (rad + this->radius >= get_segment_length(center[0], this->get_points()[0])) {
             return true;
         }
-    } else if (another_figure.get_name() == "polygon") {
+    } else if (another_figure.get_name() == "polygon" or another_figure.get_name() == "triangle") {
         if (intersection.polygon_with_circle(another_figure.get_points(), this->points, this->radius)) {
             return true;
         }
@@ -18,12 +26,7 @@ bool Circle::check_intersection(Figure& another_figure)
     return false;
 }
 
-Circle::Circle(std::string figure_description, std::string figure_name) : Figure(figure_description, figure_name)
-{
-    radius = calc_radius(figure_description);
-    perimeter = calc_perimeter(radius);
-    square = calc_square(radius);
-}
+
 
     double Circle::calc_radius(std::string figure_description)
     {

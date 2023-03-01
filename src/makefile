@@ -23,7 +23,7 @@ run :
 
 debug : ./bin/debug
 
-./bin/debug : ./source/main.cpp ./assistants/get_figure.cpp
+./bin/debug : ./source/main.cpp ./assistants/get_figure.cpp ./
 	g++ -g ./source/main.cpp ./assistants/get_figure.cpp -o ./bin/debug
 
 

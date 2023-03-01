@@ -22,7 +22,7 @@ const Figure* get_figure_obj(std::string figure_description)
     if (figure_name == "circle") {
         return new Circle{figure_description, figure_name};
     } else if (figure_name == "triangle") {
-        return new Triangle{figure_description, figure_name};
+        return new Polygon{figure_description, figure_name};
     } else if (figure_name == "polygon") {
         return new Polygon{figure_description, figure_name};
     }

@@ -8,6 +8,8 @@
 class Figure {
 public:
     Figure(std::string figure_description, std::string figure_name);
+    void handling_incorrect_name(std::string figure_description, int left_border, int right_border);
+
     virtual bool check_intersection(Figure& another_fig)
     {
         return 0;
@@ -17,11 +19,6 @@ public:
         return 0;
     }
 
-
-    virtual double get_data() // *********************
-    {
-        return 0;
-    }
     std::vector<std::vector<double>> get_points()
     {
         return points;
@@ -41,10 +38,9 @@ public:
     }
 
 private:
-    void handling_incorrect_name(std::string figure_description);
+    void get_name_borders(std::string figure_description, int* left_border, int* right_border);
 
     std::vector<std::vector<double>> get_points(std::string figure_description);
-
 
 protected:
     double get_segment_length(std::vector<double> first_point, std::vector<double> second_point)

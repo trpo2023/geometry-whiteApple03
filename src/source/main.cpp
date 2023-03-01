@@ -30,6 +30,7 @@ int main()
                 std::cout << "    " << k + 1 << "." << all_figures[k]->get_name() << "\n";
             }
         }
+        std::cout << '\n';
     }
     return 0;
 }

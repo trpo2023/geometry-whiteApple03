@@ -25,7 +25,7 @@ private:
     {
         return M_PI * pow(radius, 2);
     }
-    double calc_perimeter(double radius)
+    double calc_perimeter(double radius) 
     {
         return 2 * M_PI * radius;
     }
