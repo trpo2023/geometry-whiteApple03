@@ -1,29 +1,36 @@
-all : ./bin/project.exe
+TARGET = ./bin/project.exe
+DEBUG = ./bin/debug
 
-./bin/project.exe : ./obj/main.o  ./obj/get_figure.o  ./obj/Figure.o ./obj/Circle.o ./obj/Polygon.o
-	mkdir -p ./bin
-	g++ ./obj/main.o ./obj/Figure.o ./obj/get_figure.o ./obj/Circle.o ./obj/Polygon.o -o ./bin/project.exe
+source_dirs = . source assistants figures/Circle figures/Polygon ParantFigure
 
-./obj/main.o : ./source/main.cpp
-	mkdir -p ./obj
-	g++ -Wall -Werror -c ./source/main.cpp -o ./obj/main.o
 
-./obj/get_figure.o : ./assistants/get_figure.cpp	
-	g++ -Wall -Werror -c ./assistants/get_figure.cpp -o ./obj/get_figure.o
-./obj/Figure.o : ./ParantFigure/Figure.cpp
-	g++ -Wall -Werror -c ./ParantFigure/Figure.cpp -o ./obj/Figure.o
-./obj/Circle.o : ./figures/Circle/Circle.cpp
-	g++ -Wall -Werror -c ./figures/Circle/Circle.cpp -o ./obj/Circle.o
-./obj/Polygon.o : ./figures/Polygon/Polygon.cpp	
-	g++ -Wall -Werror -c ./figures/Polygon/Polygon.cpp -o ./obj/Polygon.o
+search_wildcards := $(addsuffix /*.cpp,$(source_dirs))
+SRC = $(wildcard $(search_wildcards))
+
+all : $(TARGET)
+
+
+$(TARGET): $(addprefix ./obj/,$(notdir $(patsubst %.cpp,%.o,$(wildcard $(search_wildcards)))))
+	g++ $^ -o $@ 
+
+VPATH := $(source_dirs)
+	
+./obj/%.o: %.cpp
+
+	g++ -c -MMD -Wall -Werror $(addprefix -I,$(source_dirs)) $< -o $@
+
+include $(wildcard *.d)
+
 clean : 
-	rm ./bin/project.exe ./obj/main.o ./obj/get_figure.o ./bin/debug ./obj/Figure.o ./obj/Polygon.o ./obj/Circle.o 
+	rm $(TARGET) ./obj/*.[do]
 run :
-	./bin/project.exe
+	$(TARGET)
 
-debug : ./bin/debug
+debug : $(DEBUG)
 
-./bin/debug : ./source/main.cpp ./assistants/get_figure.cpp ./
-	g++ -g ./source/main.cpp ./assistants/get_figure.cpp -o ./bin/debug
+$(DEBUG) : $(SRC)
+	g++ -g $^ -o $@
+
+.PHONY : debug run clean
 
 
