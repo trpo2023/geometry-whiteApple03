@@ -1,15 +1,15 @@
-#include "../assistants/get_figure.hpp"
+#include "assistants/get_figure.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
 
-int main(int argc, char ** argv)
+int main(int argc, char** argv)
 {
-		// int i = 0;
-		// while(argv[1][i] != '\0') {
-		// 	std::cout << argv[1][i];
-		// 	i++;
-		// }
+    // int i = 0;
+    // while(argv[1][i] != '\0') {
+    // 	std::cout << argv[1][i];
+    // 	i++;
+    // }
 
     std::vector<std::string> user_input;
     std::string figure_one;
@@ -23,6 +23,9 @@ int main(int argc, char ** argv)
     }
 
     for (unsigned int i = 0; i < all_figures.size(); i++) {
+        if (all_figures[i]->get_name() == "error") {
+            continue;
+        }
         std::cout << i + 1 << "." << all_figures[i]->get_name() << "\n"
                   << "  perimeter = " << all_figures[i]->get_perimeter() << "\n"
                   << "  area = " << all_figures[i]->get_square() << '\n'

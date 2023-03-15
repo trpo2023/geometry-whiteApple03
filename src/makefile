@@ -1,7 +1,7 @@
 TARGET = ./bin/project.exe
 DEBUG = ./bin/debug
 
-source_dirs = . source assistants figures/Circle figures/Polygon ParantFigure
+source_dirs = . assistants figures/Circle figures/Polygon ParantFigure
 
 
 search_wildcards := $(addsuffix /*.cpp,$(source_dirs))
@@ -19,10 +19,10 @@ VPATH := $(source_dirs)
 
 	g++ -c -MMD -Wall -Werror $(addprefix -I,$(source_dirs)) $< -o $@
 
-include $(wildcard *.d)
+print:
 
 clean : 
-	rm $(TARGET) ./obj/*.[do]
+	rm $(TARGET) ./obj/*.[do] $(DEBUG)
 run :
 	$(TARGET)
 
@@ -32,5 +32,6 @@ $(DEBUG) : $(SRC)
 	g++ -g $^ -o $@
 
 .PHONY : debug run clean
+include $(wildcard ./obj/*.d)
 
 

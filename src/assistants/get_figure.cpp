@@ -1,15 +1,20 @@
-#include <string>
 #include "../figures/Circle/Circle.hpp"
 #include "../figures/Polygon/Polygon.hpp"
 #include "../figures/Triangle.hpp"
+#include <string>
 
 std::string get_figure_name(std::string figure_description)
 {
     std::string figure_name;
-    for (auto symbol = figure_description.begin();
-         symbol < figure_description.end() and *symbol != '(';
-         symbol++) {
-        if ((*symbol) != ' ') {
+    bool first_char = false;
+    for (auto symbol = figure_description.begin(); symbol < figure_description.end(); symbol++) {
+        if (first_char and (*symbol == ' ' or *symbol == '(')) {
+            break;
+        }
+        if (!first_char and (*symbol) != ' ') {
+            first_char = true;
+        }
+        if (first_char and (*symbol) != ' ') {
             figure_name.push_back(tolower(*symbol));
         }
     }

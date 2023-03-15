@@ -15,11 +15,9 @@ public:
                 double x1 = first_coord[i][0], y1 = first_coord[i][1], x2 = first_coord[i + 1][0],
                        y2 = first_coord[i + 1][1];
 
-
                 for (unsigned int k = 0; k < second_coord.size() - 1; k++) {
                     double x3 = second_coord[k][0], y3 = second_coord[k][1],
                            x4 = second_coord[k + 1][0], y4 = second_coord[k + 1][1];
-
 
                     vs[0] = get_vector_multi(x4 - x3, y4 - y3, x1 - x3, y1 - y3);
                     vs[1] = get_vector_multi(x4 - x3, y4 - y3, x2 - x3, y2 - y3);
@@ -38,6 +36,19 @@ public:
     Triangle(std::string figure_description, std::string figure_name)
         : Figure(figure_description, figure_name)
     {
+        if (name == "error") {
+            return;
+        }
+        if (points.size() != 4) {
+            name = "error";
+            std::cout << figure_description << "\ntriangle have only 4 points\n";
+            return;
+        }
+        if (points[0][0] != points[points.size() - 1][0]
+            or points[0][1] != points[points.size() - 1][1]) {
+            name = "error";
+            std::cout << figure_description << "\nthe first and last points must match\n";
+        }
         a = get_segment_length(points[0], points[1]);
         b = get_segment_length(points[1], points[2]);
         c = get_segment_length(points[2], points[3]);
