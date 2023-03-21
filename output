@@ -1,0 +1,16 @@
+22.polygon
+  perimeter = 9.65685
+  area = 4
+  intersects:
+    23.circle
+23.circle
+  perimeter = 9.42478
+  area = 7.06858
+  intersects:
+    22.polygon
+    24.polygon
+24.polygon
+  perimeter = 9.65685
+  area = 4
+  intersects:
+    23.circle

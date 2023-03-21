@@ -23,16 +23,17 @@ Figure::Figure(std::string figure_description, std::string figure_name)
         error_highlighting(
                 figure_description, cur_name_borders.left_border, cur_name_borders.right_border);
         std::cout << "\tIncorrect name: it should be polygon, circle or triangle\n\n";
-				return;
-	    }
+        name = "error";
+        return;
+    }
     point_name_borders = &cur_name_borders;
 
-		name = figure_name;
+    name = figure_name;
 
     check_correctness_of_data(figure_description, get_config(name));
-		if (name == "error") {
-			return;
-		}
+    if (name == "error") {
+        return;
+    }
     points = get_points(figure_description, get_config(name));
 }
 
