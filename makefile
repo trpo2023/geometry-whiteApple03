@@ -1,4 +1,8 @@
-TARGET = ./src/bin/project.exe
+TARGET_DIR = ./src/bin/
+OBJ_DIR = ./src/obj/
+TARGET = ${TARGET_DIR}project.exe
+
+
 DEBUG = ./src/bin/debug
 params = ""
 
@@ -12,12 +16,13 @@ all : $(TARGET)
 
 
 $(TARGET): $(addprefix ./src/obj/,$(notdir $(patsubst %.cpp,%.o,$(wildcard $(search_wildcards)))))
+	mkdir -p ${TARGET_DIR}
 	g++ $^ -o $@ 
 
 VPATH := $(source_dirs)
 	
 ./src/obj/%.o: %.cpp
-
+	mkdir -p ${OBJ_DIR}
 	g++ -c -MMD -Wall -Werror $(addprefix -I,$(source_dirs)) $< -o $@
 
 print:
