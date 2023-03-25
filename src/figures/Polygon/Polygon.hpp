@@ -1,7 +1,7 @@
+#include <libGeometry/geometry.hpp>
 #include <math.h>
 #include <string>
 #include <vector>
-#include <libGeometry/geometry.hpp>
 
 class Polygon : public Figure {
 public:

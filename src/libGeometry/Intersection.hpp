@@ -14,4 +14,3 @@ public:
             std::vector<std::vector<double>> second_coord);
 };
 #endif
-

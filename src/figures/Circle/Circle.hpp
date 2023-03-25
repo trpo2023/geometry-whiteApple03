@@ -1,8 +1,8 @@
 #include <algorithm>
 #include <iostream>
+#include <libGeometry/geometry.hpp>
 #include <math.h>
 #include <vector>
-#include <libGeometry/geometry.hpp>
 
 class Circle : public Figure {
 public:
