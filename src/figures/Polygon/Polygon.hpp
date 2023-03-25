@@ -1,7 +1,8 @@
-#include "../../ParantFigure/Figure.hpp"
 #include <math.h>
 #include <string>
 #include <vector>
+#include <libGeometry/geometry.hpp>
+
 class Polygon : public Figure {
 public:
     Polygon(std::string figure_description, std::string figure_name)

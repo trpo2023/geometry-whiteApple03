@@ -1,4 +1,4 @@
-#include "../ParantFigure/Figure.hpp"
+#include <libGeometry/ParantFigure/Figure.hpp>
 #include <string>
 
 std::string get_figure_name(std::string figure_description);
