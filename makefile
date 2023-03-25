@@ -1,8 +1,8 @@
-TARGET_DIR = ./src/bin/
-OBJ_DIR = ./src/obj/
+TARGET_DIR = ./bin/
+OBJ_DIR = ./obj/
 TARGET = ${TARGET_DIR}project.exe
 GEOMETRY_PATH = ./src/libGeometry/
-GEOMETRY_OBJ = ./src/obj/libGeometry/
+GEOMETRY_OBJ = ./obj/libGeometry/
 
 DEBUG = ./src/bin/debug
 params = ""
@@ -16,18 +16,19 @@ SRC = $(wildcard $(search_wildcards))
 all : $(TARGET)
 
 
-$(TARGET): $(addprefix ./src/obj/,$(notdir $(patsubst %.cpp,%.o,$(wildcard $(search_wildcards))))) ${GEOMETRY_PATH}libGeometry.a
+$(TARGET): $(addprefix ${OBJ_DIR},$(notdir $(patsubst %.cpp,%.o,$(wildcard $(search_wildcards))))) ${GEOMETRY_PATH}libGeometry.a
 	mkdir -p ${TARGET_DIR}
-	g++  $^ -L./src/libGeometry -lGeometry -o $@ 
+	g++  $^ -L${GEOMETRY_PATH} -lGeometry -o $@ 
 
 VPATH := $(source_dirs)
 	
-./src/obj/%.o: %.cpp
+${OBJ_DIR}%.o: %.cpp
 	mkdir -p ${OBJ_DIR}
 	g++ -c -MMD -Wall -Werror $(addprefix -I,$(source_dirs)) $< -o $@
 ${GEOMETRY_PATH}libGeometry.a: ${GEOMETRY_OBJ}intersection.o ${GEOMETRY_OBJ}ParantFigure.o
 	ar rcs $@ $^
 ${GEOMETRY_OBJ}intersection.o: ${GEOMETRY_PATH}intersection.cpp 
+	mkdir -p ${GEOMETRY_OBJ}
 	g++ -c -MMD -Wall -Werror -o $@ $<
 ${GEOMETRY_OBJ}ParantFigure.o: ${GEOMETRY_PATH}ParantFigure/Figure.cpp 
 	g++ -c -MMD -Wall -Werror -o $@ $<
@@ -36,7 +37,7 @@ print:
 	echo ${search_wildcards}
 
 clean : 
-	rm $(TARGET) ./src/obj/*.[do] ./src/obj $(DEBUG)
+	rm $(TARGET) ${OBJ_DIR}*.[do] ${OBJ_DIR} $(DEBUG)
 run :
 	$(TARGET) ${params}
 
