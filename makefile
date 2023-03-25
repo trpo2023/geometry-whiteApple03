@@ -7,7 +7,7 @@ GEOMETRY_OBJ = ./src/obj/libGeometry/
 DEBUG = ./src/bin/debug
 params = ""
 
-source_dirs = src src/assistants src/figures/Circle src/figures/Polygon src/ParantFigure src/figures/Triangle
+source_dirs = src src/assistants src/figures/Circle src/figures/Polygon  src/figures/Triangle
 
 
 search_wildcards := $(addsuffix /*.cpp,$(source_dirs))
@@ -25,16 +25,18 @@ VPATH := $(source_dirs)
 ./src/obj/%.o: %.cpp
 	mkdir -p ${OBJ_DIR}
 	g++ -c -MMD -Wall -Werror $(addprefix -I,$(source_dirs)) $< -o $@
-${GEOMETRY_PATH}libGeometry.a: ${GEOMETRY_OBJ}intersection.o
+${GEOMETRY_PATH}libGeometry.a: ${GEOMETRY_OBJ}intersection.o ${GEOMETRY_OBJ}ParantFigure.o
 	ar rcs $@ $^
-${GEOMETRY_OBJ}intersection.o: ${GEOMETRY_PATH}intersection.cpp
+${GEOMETRY_OBJ}intersection.o: ${GEOMETRY_PATH}intersection.cpp 
+	g++ -c -MMD -Wall -Werror -o $@ $<
+${GEOMETRY_OBJ}ParantFigure.o: ${GEOMETRY_PATH}ParantFigure/Figure.cpp 
 	g++ -c -MMD -Wall -Werror -o $@ $<
 
 print:
 	echo ${search_wildcards}
 
 clean : 
-	rm $(TARGET) ./src/obj/*.[do] $(DEBUG)
+	rm $(TARGET) ./src/obj/*.[do] ./src/obj $(DEBUG)
 run :
 	$(TARGET) ${params}
 

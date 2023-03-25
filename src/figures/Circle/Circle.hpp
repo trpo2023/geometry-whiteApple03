@@ -1,8 +1,8 @@
-#include "../../ParantFigure/Figure.hpp"
 #include <algorithm>
 #include <iostream>
 #include <math.h>
 #include <vector>
+#include <libGeometry/geometry.hpp>
 
 class Circle : public Figure {
 public:

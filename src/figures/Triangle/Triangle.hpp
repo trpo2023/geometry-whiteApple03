@@ -1,8 +1,8 @@
-#include "../../ParantFigure/Figure.hpp"
 #include <math.h>
 #include <string>
 #include <vector>
 
+#include <libGeometry/geometry.hpp>
 
 class Triangle : public Figure {
 public:

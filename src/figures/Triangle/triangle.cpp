@@ -1,5 +1,5 @@
+
 #include "./Triangle.hpp"
-#include <libGeometry/geometry.hpp>
 
 static Intersection intersection;
 
