@@ -1,5 +1,5 @@
 #include "./Polygon.hpp"
-#include "../../intersections/Intersection.hpp"
+#include <libGeometry/geometry.hpp>
 static Intersection intersection;
 
 double Polygon::calc_perimeter(std::vector<std::vector<double>> points)
