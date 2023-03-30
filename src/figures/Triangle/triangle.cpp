@@ -1,4 +1,3 @@
-
 #include <Triangle.hpp>
 
 static Intersection intersection;

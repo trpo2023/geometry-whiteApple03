@@ -7,7 +7,6 @@
 
 #include <get_figure.hpp>
 
-
 int main(int argc, char** argv)
 {
     bool directory = false;

@@ -1,7 +1,8 @@
+#include <string>
+
 #include <Circle.hpp>
 #include <Polygon.hpp>
 #include <Triangle.hpp>
-#include <string>
 
 std::string get_figure_name(std::string figure_description)
 {
