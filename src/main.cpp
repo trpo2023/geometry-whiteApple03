@@ -1,10 +1,12 @@
-#include "assistants/get_figure.hpp"
 #include <fstream>
 #include <iostream>
 #include <limits.h>
 #include <string>
 #include <unistd.h>
 #include <vector>
+
+#include <get_figure.hpp>
+
 
 int main(int argc, char** argv)
 {

@@ -1,4 +1,4 @@
-#include "./Circle.hpp"
+#include <Circle.hpp>
 static Intersection intersection;
 
 Circle::Circle(std::string figure_description, std::string figure_name)

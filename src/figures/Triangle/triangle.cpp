@@ -1,5 +1,5 @@
 
-#include "./Triangle.hpp"
+#include <Triangle.hpp>
 
 static Intersection intersection;
 
