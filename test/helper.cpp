@@ -8,12 +8,8 @@
 struct data_base {
     std::vector<std::string> rows;
 };
-void get_base(data_base &base)
+void get_base(data_base& base)
 {
-
-    // char buffer[PATH_MAX];
-    // getcwd(buffer, sizeof(buffer));
-    // std::string current_dir = buffer;
     std::string figure_one;
 
     std::ifstream file("../input/input2");
