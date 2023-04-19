@@ -12,7 +12,7 @@ void get_base(data_base& base)
 {
     std::string figure_one;
 
-    std::ifstream file("../input/input2");
+    std::ifstream file("../input/test");
 
     if (file.is_open()) {
         while (getline(file, figure_one)) {

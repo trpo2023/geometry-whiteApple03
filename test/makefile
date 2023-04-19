@@ -7,7 +7,7 @@ GEOMETRY_OBJ = ../obj/libGeometry/
 DEBUG = ./src/bin/debug
 params = ""
 
-source_dirs = . ../src/ ../src/assistants/ ../src/figures/Circle/ ../src/figures/Polygon/  ../src/figures/Triangle/
+source_dirs = . ../src/ ../src/assistants/ ../src/figures/Circle/ ../src/figures/Polygon/  ../src/figures/Triangle/ ../src/libGeometry ../src/libGeometry/ParantFigure
 
 
 search_wildcards := $(addsuffix /*.cpp,$(source_dirs))
@@ -29,10 +29,10 @@ ${OBJ_DIR}%.o: %.cpp
 ${GEOMETRY_OBJ}libGeometry.a: ${GEOMETRY_OBJ}intersection.o ${GEOMETRY_OBJ}ParantFigure.o
 	ar rcs $@ $^
 ${GEOMETRY_OBJ}intersection.o: ${GEOMETRY_PATH}intersection.cpp 
-	mkdir -p ${GEOMETRY_OBJ}
-	g++ -c -MMD  -o $@ $<
+	mkdir -p  ${GEOMETRY_OBJ}
+	g++ -c -MMD -I../src/libGeometry -I../src/libGeometry/ParantFigure  -o $@ $<
 ${GEOMETRY_OBJ}ParantFigure.o: ${GEOMETRY_PATH}ParantFigure/Figure.cpp 
-	g++ -c -MMD  -o $@ $<
+	g++ -c -MMD  -I../src/libGeometry -I../src/libGeometry/ParantFigure -o $@ $<
 
 print:
 	echo ${search_wildcards}
