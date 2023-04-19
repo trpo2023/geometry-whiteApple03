@@ -17,7 +17,7 @@ Circle::Circle(std::string figure_description, std::string figure_name)
         if (output.is_open()) {
             output << figure_description << "\nradius > 0\n";
         }
-				
+
         return;
     }
     perimeter = calc_perimeter(radius);
