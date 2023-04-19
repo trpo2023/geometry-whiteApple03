@@ -1,6 +1,7 @@
 #ifndef Figure_HPP
 #define Figure_HPP
-#include <iostream>
+#include <fstream>
+
 #include <math.h>
 #include <string>
 #include <vector>
@@ -9,6 +10,14 @@ class Figure {
 public:
     Figure(std::string figure_description, std::string figure_name);
     void error_highlighting(std::string figure_description, int left_border, int right_border);
+
+    void print_mes(std::string message)
+    {
+        std::ofstream output("output", std::ios::app);
+        if (output.is_open()) {
+            output << message;
+        }
+    }
     int check_correctness_of_data(std::string figure_description, std::string config)
     {
         int index_config = 0;
@@ -113,7 +122,8 @@ private:
             while (i < figure_description.size()) {
                 if (figure_description[i] != ' ') {
                     error_highlighting(figure_description, i, i);
-                    std::cout << " incorrect input format: expected nothing\n";
+
+                    print_mes(" incorrect input format: expected nothing\n");
                     // exit(-1);(-1);
                     name = "error";
                     return -1;
@@ -125,8 +135,7 @@ private:
             while (i < figure_description.size() and figure_description[i] != ')') {
                 if (figure_description[i] != ' ') {
                     error_highlighting(figure_description, i, i);
-                    std::cout << " incorrect input format: expected symbol ')'\n";
-                    // exit(-1);(-1);
+                    print_mes(" incorrect input format: expected symbol ')'\n");
                     name = "error";
                     return -1;
                 }
@@ -146,7 +155,7 @@ private:
             while (i < figure_description.size() and figure_description[i] != ',') {
                 if (figure_description[i] != ' ') {
                     error_highlighting(figure_description, i, i);
-                    std::cout << " incorrect input format: expected symbol ','\n";
+                    print_mes(" incorrect input format: expected symbol ','\n");
                     // exit(-1);(-1);
                     name = "error";
                     return -1;
@@ -171,8 +180,7 @@ private:
                 }
                 if (figure_description[i] != ' ') {
                     error_highlighting(figure_description, i, i);
-                    std::cout << " incorrect input format: expected digit\n";
-                    // exit(-1);(-1);
+                    print_mes(" incorrect input format: expected digit\n");
                     name = "error";
                     return -1;
                 }
@@ -198,14 +206,14 @@ private:
                 }
                 if (decimal_point > 1) {
                     error_highlighting(figure_description, start_of_digit, end_of_digit - 1);
-                    std::cout << " there can be only one dot in a number\n";
+                    print_mes(" there can be only one dot in a number\n");
                     // exit(-1);(-1);
                     name = "error";
                     return -1;
                 }
                 if (dash > 1) {
                     error_highlighting(figure_description, start_of_digit, end_of_digit - 1);
-                    std::cout << " there can be only one dash in a number\n";
+                    print_mes(" there can be only one dash in a number\n");
                     // exit(-1);(-1);
                     name = "error";
                     return -1;
@@ -213,7 +221,7 @@ private:
                 if ((figure_description[i] < '0' or figure_description[i] > '9')
                     and (figure_description[i] != '.' and figure_description[i] != '-')) {
                     error_highlighting(figure_description, i, i);
-                    std::cout << " incorrect input format: expected digit\n";
+                    print_mes(" incorrect input format: expected digit\n");
                     // exit(-1);(-1);
                     name = "error";
                     return -1;
@@ -231,7 +239,7 @@ private:
             while (i < figure_description.size() and figure_description[i] != '(') {
                 if (figure_description[i] != ' ') {
                     error_highlighting(figure_description, i, i);
-                    std::cout << " incorrect input format: expected symbol '('\n";
+                    print_mes(" incorrect input format: expected symbol '('\n");
                     // exit(-1);(-1);
                     name = "error";
                     return -1;

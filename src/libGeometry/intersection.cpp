@@ -1,5 +1,5 @@
-#include "./Intersection.hpp"
-#include <iostream>
+#include <Intersection.hpp>
+
 double get_vector_multi(double ax, double ay, double bx, double by)
 {
     return ax * by - bx * ay;

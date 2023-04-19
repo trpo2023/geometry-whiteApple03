@@ -1,3 +1,2 @@
-#include "./Intersection.hpp"
-
-#include "./ParantFigure/Figure.hpp"
+#include <Figure.hpp>
+#include <Intersection.hpp>

@@ -34,10 +34,10 @@ int main(int argc, char** argv)
     char buffer[PATH_MAX];
     getcwd(buffer, sizeof(buffer));
     std::string current_dir = buffer;
-
+    std::ofstream output("output");
+    output.close();
     if (directory) {
         path = current_dir + "/" + path;
-        std::cout << path << '\n';
         std::ifstream file(path);
         if (file.is_open()) {
             while (getline(file, figure_one)) {
@@ -45,8 +45,6 @@ int main(int argc, char** argv)
             }
             file.close();
         } else {
-            std::cout << "\a\e[1;31mОШИБКА: файл \e[0m\e[35m\e[0m\e[1;31m не "
-                         "существует!\e[0m\n";
             exit(1);
         }
 
@@ -59,7 +57,8 @@ int main(int argc, char** argv)
     for (std::vector<int>::size_type i = 0; i < user_input.size(); i++) {
         all_figures.push_back(get_figure_obj(user_input[i]));
     }
-    std::ofstream output(current_dir + "/output");
+
+    output.open("output", std::ios::app);
     for (unsigned int i = 0; i < all_figures.size(); i++) {
         if (all_figures[i]->get_name() == "error") {
             continue;
