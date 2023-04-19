@@ -1,4 +1,7 @@
+#include <fstream>
+
 #include <Circle.hpp>
+
 static Intersection intersection;
 
 Circle::Circle(std::string figure_description, std::string figure_name)
@@ -10,7 +13,11 @@ Circle::Circle(std::string figure_description, std::string figure_name)
     radius = calc_radius(figure_description);
     if (radius <= 0) {
         name = "error";
-        std::cout << figure_description << "\nradius > 0\n";
+        std::ofstream output("output", std::ios::app);
+        if (output.is_open()) {
+            output << figure_description << "\nradius > 0\n";
+        }
+
         return;
     }
     perimeter = calc_perimeter(radius);
@@ -51,6 +58,10 @@ double Circle::calc_radius(std::string figure_description)
             return stod(radius);
         }
     }
-    std::cout << "error: did't find the radius\n";
+    std::ofstream output("output", std::ios::app);
+    if (output.is_open()) {
+        output << "error: did't find the radius\n";
+        output << figure_description << "\nradius > 0\n";
+    }
     return -1;
 }

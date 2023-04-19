@@ -32,6 +32,5 @@ const Figure* get_figure_obj(std::string figure_description)
     } else if (figure_name == "polygon") {
         return new Polygon{figure_description, figure_name};
     }
-    std::cout << "error: " << figure_name << std::endl;
     return new Figure{figure_description, "name_error"};
 }

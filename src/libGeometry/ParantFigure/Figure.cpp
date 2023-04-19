@@ -1,4 +1,6 @@
-#include "./Figure.hpp"
+#include <fstream>
+
+#include <Figure.hpp>
 
 std::string Figure::get_config(std::string figure_name)
 {
@@ -22,7 +24,10 @@ Figure::Figure(std::string figure_description, std::string figure_name)
     if (figure_name == "name_error") {
         error_highlighting(
                 figure_description, cur_name_borders.left_border, cur_name_borders.right_border);
-        std::cout << "\tIncorrect name: it should be polygon, circle or triangle\n\n";
+        std::ofstream output("output", std::ios::app);
+        if (output.is_open()) {
+            output << "\tIncorrect name: it should be polygon, circle or triangle\n\n";
+        }
         name = "error";
         return;
     }
@@ -58,16 +63,19 @@ void Figure::get_name_borders(std::string figure_description, int& left_border, 
 
 void Figure::error_highlighting(std::string figure_description, int left_border, int right_border)
 {
-    std::cout << figure_description << std::endl;
+    std::ofstream output("output", std::ios::app);
+    if (output.is_open()) {
+        output << figure_description << std::endl;
 
-    for (int i = 0; i < right_border; i++) {
-        if (i < left_border) {
-            std::cout << ' ';
-        } else {
-            std::cout << "\033[31m~\033[0m";
+        for (int i = 0; i < right_border; i++) {
+            if (i < left_border) {
+                output << ' ';
+            } else {
+                output << "~";
+            }
         }
+        output << "^";
     }
-    std::cout << "^";
 }
 
 std::vector<std::vector<double>>

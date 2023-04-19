@@ -1,3 +1,4 @@
+#include <fstream>
 #include <math.h>
 #include <string>
 #include <vector>
@@ -15,7 +16,10 @@ public:
         if (points[0][0] != points[points.size() - 1][0]
             or points[0][1] != points[points.size() - 1][1]) {
             name = "error";
-            std::cout << figure_description << "\nthe first and last points must match\n";
+            std::ofstream output("output", std::ios::app);
+            if (output.is_open()) {
+                output << figure_description << "\nthe first and last points must match\n";
+            }
         }
         perimeter = calc_perimeter(points);
         square = calc_square(points);
