@@ -1,2 +1,2 @@
-#include <Figure.hpp>
-#include <Intersection.hpp>
+#include <libGeometry/ParantFigure/Figure.hpp>
+#include <libGeometry/Intersection.hpp>
