@@ -60,7 +60,7 @@ $(TARGET_TEST): $(addprefix ${OBJ_DIR_TEST},$(notdir $(patsubst %.cpp,%.o,$(wild
 	
 ${OBJ_DIR_TEST}%.o: %.cpp
 	mkdir -p ${OBJ_DIR_TEST}
-	g++ -c -MMD -Isrc $(addprefix -I,$(source_dirs_test)) $< -o $@
+	g++ -c -MMD -Isrc -Ithirdparty $(addprefix -I,$(source_dirs_test)) $< -o $@
 
 run_test : 
 	$(TARGET_TEST) 

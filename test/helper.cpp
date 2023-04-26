@@ -1,10 +1,10 @@
 #include <fstream>
-
 #include <limits.h>
 #include <stdlib.h>
 #include <string>
 #include <unistd.h>
 #include <vector>
+
 struct data_base {
     std::vector<std::string> rows;
 };

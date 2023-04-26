@@ -1,15 +1,8 @@
-
-#include "../thirdparty/ctest.h"
-#include <cstring>
-#include <fstream>
-
-#include <limits.h>
-#include <stdlib.h>
 #include <string>
-
-#include <unistd.h>
+#include <cstring>
 #include <vector>
 
+#include <ctest.h>
 #include <get_figure.hpp>
 struct data_base {
     std::vector<std::string> rows;
