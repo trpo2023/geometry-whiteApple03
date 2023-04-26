@@ -32,7 +32,7 @@ ${GEOMETRY_OBJ}intersection.o: ${GEOMETRY_PATH}intersection.cpp
 	mkdir -p ${GEOMETRY_OBJ}
 	g++ -c -MMD -Wall -Werror $(addprefix -I,$(includes)) -o $@ $<
 ${GEOMETRY_OBJ}ParantFigure.o: ${GEOMETRY_PATH}ParantFigure/Figure.cpp 
-	g++ -c -MMD -Wall -Werror -Isrc/libGeometry -Isrc/libGeometry/ParantFigure -o $@ $<
+	g++ -c -MMD -Wall -Werror $(addprefix -I,$(includes)) -o $@ $<
 
 
 clean : 
